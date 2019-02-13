@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class Student extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     
     this.state = {
       studentInfo: {}
     }
+    this.goBack = this.goBack.bind(this)
+  }
+
+  goBack(){
+    this.props.history.goBack()
   }
 
   componentDidMount(){
@@ -19,8 +24,9 @@ export default class Student extends Component {
   render() {
     return (
       <div className="box">
+        <button onClick={this.goBack}>Back</button>
         <h1>Student:</h1>
-        <h1>{this.state.studentInfo.first_name} {this.UNSAFE_componentWillMount.state.studentInfo.last_name}</h1>
+        <h1>{this.state.studentInfo.first_name} {this.state.studentInfo.last_name}</h1>
         <h3>Grade: {this.state.studentInfo.grade}</h3>
         <h3>Email: {this.state.studentInfo.email}</h3>
       </div>

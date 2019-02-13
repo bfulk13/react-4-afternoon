@@ -3,13 +3,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class ClassList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       students: []
     }
-    
+    this.goBack = this.goBack.bind(this)
+  }
+
+  goBack(){
+    this.props.history.goBack()
   }
 
   componentDidMount(){
@@ -26,6 +30,7 @@ export default class ClassList extends Component {
     ))
     return (
       <div className="box">
+        <button onClick={this.goBack}>Back</button>
         <h1>{ this.props.match.params.class }</h1>
         <h2>ClassList:</h2>
         { students }
